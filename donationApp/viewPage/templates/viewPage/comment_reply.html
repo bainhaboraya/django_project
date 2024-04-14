@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Reply to Comment</h2>
+  <form class="comment-form" method="post" action="{% url 'comment_reply' comment.id %}">
+    {% csrf_token %}
+    {{ reply_form.as_p }}
+    <button type="submit">Submit Reply</button>
+  </form>
+{% endblock %}

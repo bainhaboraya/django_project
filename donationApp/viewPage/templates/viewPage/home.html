@@ -1,0 +1,39 @@
+<!-- viewPage/home.html -->
+{% extends 'layout/base.html' %}
+
+{% block content %}
+  <h1>Home Page</h1>
+
+  <!-- Display Projects -->
+  {% for project in projects %}
+    <div class="project-container">
+      <h2>{{ project.title }}</h2>
+      <!-- Project details display -->
+      
+      <div class="slider">
+        {% for picture in project.pictures.all %}
+          <div><img src="{{ picture.path.url }}" alt="Slider Image"></div>
+        {% endfor %}
+      </div>
+      
+      <p class="project-description">{{ project.details }}</p>
+      
+      <!-- Rating form -->
+      <form method="post" >
+        {% csrf_token %}
+        <label for="rating">Rate this project:</label>
+        <input type="number" name="rating" min="1" max="5">
+        <button type="submit">Submit Rating</button>
+      </form>
+
+      <!-- Report project form -->
+      <h3>Report Project</h3>
+      <form method="post" >
+        {% csrf_token %}
+        {{ report_form.as_p }}
+        <input type="hidden" name="project_id" value="{{ project.id }}">
+        <button type="submit">Report</button>
+      </form>
+    </div>
+  {% endfor %}
+{% endblock %}

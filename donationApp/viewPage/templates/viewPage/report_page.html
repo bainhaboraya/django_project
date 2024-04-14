@@ -1,0 +1,14 @@
+<!-- report_page.html -->
+{% extends 'layout/base.html' %}
+
+{% block content %}
+  <h1>Report Page</h1>
+  <p>Report the project here.</p>
+  <!-- Report project form -->
+  <form method="post">
+    {% csrf_token %}
+    {{ report_form.as_p }}
+    <input type="hidden" name="project_id" value="{{ project.id }}">
+    <button type="submit">Report</button>
+  </form>
+{% endblock %}

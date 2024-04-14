@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Report Project</h2>
+  <form class="report-project-form" method="post" action="{% url 'report_project' project.id %}">
+    {% csrf_token %}
+    {{ report_form.as_p }}
+    <button type="submit">Report Project</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Report Comment</h2>
+  <form class="report-comment-form" method="post" action="{% url 'report_comment' comment.id %}">
+    {% csrf_token %}
+    {{ report_form.as_p }}
+    <button type="submit">Report Comment</button>
+  </form>
+{% endblock %}
